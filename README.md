@@ -8,8 +8,6 @@ Adresse: https://adamah1.github.io
 ## Hvordan siden ble laget
 
 Jeg har planlagt innholdet, valgt hvilke prosjekter som skal være med og publisert siden selv.
-Koden og tekstene ble laget med hjelp fra Claude, en AI-assistent fra Anthropic, og jeg har gått gjennom og tilpasset dem.
-Jeg skriver dette fordi jeg mener det er riktig å være åpen om hvilke verktøy jeg bruker.
 
 ## Publisere første gang
 
