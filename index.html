@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adam Hassan · Utvikler i Kristiansand</title>
+  <meta name="description" content="Adam Hassan, dataingeniørstudent ved UiA. Jeg bygger apper som løser ekte problemer, og nettsider for bedrifter i Kristiansand.">
+  <meta property="og:title" content="Adam Hassan · Utvikler i Kristiansand">
+  <meta property="og:description" content="Apper som løser ekte problemer, og nettsider for bedrifter i Kristiansand.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1424'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%23f5a524' text-anchor='middle'%3EAH%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-2: #101a2e;
+      --card: #131f37;
+      --line: #22304d;
+      --text: #e8ecf4;
+      --muted: #9aa6bd;
+      --amber: #f5a524;
+      --orange: #ff7a1a;
+      --radius: 16px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .wrap { width: min(var(--max), 100% - 2.5rem); margin-inline: auto; }
+
+    /* Navigasjon */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(11, 18, 32, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-weight: 800; text-decoration: none; letter-spacing: -0.02em; font-size: 1.1rem; }
+    .logo span { color: var(--amber); }
+    nav ul { display: flex; gap: 1.6rem; list-style: none; }
+    nav ul a { text-decoration: none; color: var(--muted); font-size: 0.95rem; transition: color .2s; }
+    nav ul a:hover { color: var(--amber); }
+
+    /* Forside */
+    .hero {
+      padding: 6.5rem 0 5rem;
+      background:
+        radial-gradient(600px 300px at 85% 10%, rgba(245,165,36,0.13), transparent 70%),
+        radial-gradient(500px 300px at 10% 90%, rgba(255,122,26,0.08), transparent 70%);
+    }
+    .eyebrow {
+      display: inline-block; font-size: 0.85rem; font-weight: 600;
+      color: var(--amber); border: 1px solid rgba(245,165,36,0.35);
+      padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 1.4rem;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.05; letter-spacing: -0.035em; font-weight: 800;
+      max-width: 14ch;
+    }
+    h1 em { font-style: normal; color: var(--amber); }
+    .lead { margin-top: 1.4rem; font-size: 1.15rem; color: var(--muted); max-width: 56ch; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2.2rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.4rem; border-radius: 999px; font-weight: 600;
+      text-decoration: none; transition: transform .15s, background .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, var(--amber), var(--orange)); color: #1a1205; }
+    .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--amber); }
+
+    /* Seksjoner */
+    section { padding: 5rem 0; }
+    section.alt { background: var(--bg-2); border-block: 1px solid var(--line); }
+    .section-head { margin-bottom: 2.5rem; }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.4rem); letter-spacing: -0.025em; line-height: 1.15; }
+    .section-head p { color: var(--muted); margin-top: 0.6rem; max-width: 60ch; }
+
+    /* Prosjektkort */
+    .grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 1.6rem; display: flex; flex-direction: column; gap: 0.9rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: rgba(245,165,36,0.5); transform: translateY(-3px); }
+    .card.featured { grid-column: 1 / -1; background: linear-gradient(135deg, #16233f, #131f37 60%); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .card h3 { font-size: 1.3rem; letter-spacing: -0.015em; }
+    .status {
+      font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 999px; white-space: nowrap;
+    }
+    .s-live { background: rgba(74,222,128,0.12); color: #7ee2a3; }
+    .s-dev { background: rgba(245,165,36,0.14); color: var(--amber); }
+    .s-plan { background: rgba(154,166,189,0.14); color: var(--muted); }
+    .card p { color: var(--muted); }
+    .card .why { font-size: 0.93rem; border-left: 2px solid var(--amber); padding-left: 0.9rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; padding-top: 0.4rem; }
+    .tags li {
+      list-style: none; font-size: 0.78rem; color: var(--text);
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+      padding: 0.2rem 0.6rem; border-radius: 6px;
+    }
+    .card a.link { color: var(--amber); font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+    .card a.link:hover { text-decoration: underline; }
+
+    /* Nettsider for bedrifter */
+    .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: start; }
+    .split p { color: var(--muted); }
+    .split p + p { margin-top: 1rem; }
+    .features { display: grid; gap: 0.9rem; }
+    .feature {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem;
+    }
+    .feature .num {
+      flex: none; width: 2rem; height: 2rem; border-radius: 8px; display: grid; place-items: center;
+      background: rgba(245,165,36,0.15); color: var(--amber); font-weight: 700; font-size: 0.9rem;
+    }
+    .feature strong { display: block; }
+    .feature span { color: var(--muted); font-size: 0.93rem; }
+
+    /* Om meg */
+    .about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; }
+    .about-grid p { color: var(--muted); }
+    .about-grid p + p { margin-top: 1rem; }
+    .facts { display: grid; gap: 1.4rem; }
+    .facts h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-bottom: 0.5rem; }
+    .facts ul { list-style: none; color: var(--text); }
+    .facts li { padding: 0.15rem 0; }
+    .facts li small { color: var(--muted); }
+
+    /* Kontakt */
+    .contact {
+      text-align: center; background: var(--card); border: 1px solid var(--line);
+      border-radius: 24px; padding: 3.5rem 1.5rem;
+      background-image: radial-gradient(400px 200px at 50% 0%, rgba(245,165,36,0.12), transparent 70%);
+    }
+    .contact p { color: var(--muted); margin: 0.8rem auto 0; max-width: 50ch; }
+    .contact .buttons { justify-content: center; }
+
+    footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.88rem; text-align: center; }
+
+    @media (max-width: 820px) {
+      nav ul { gap: 1rem; }
+      nav ul li.hide-sm { display: none; }
+      .split, .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero { padding: 4.5rem 0 3.5rem; }
+      section { padding: 3.8rem 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn, .card { transition: none; }
+      .btn:hover, .card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="wrap" aria-label="Hovedmeny">
+      <a href="#" class="logo">Adam<span>.</span></a>
+      <ul>
+        <li><a href="#prosjekter">Prosjekter</a></li>
+        <li><a href="#nettsider">Nettsider</a></li>
+        <li class="hide-sm"><a href="#om">Om meg</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Dataingeniørstudent · UiA Kristiansand</span>
+        <h1>Jeg bygger ting som <em>løser ekte problemer.</em></h1>
+        <p class="lead">
+          Hei, jeg er Adam. Jeg studerer programvareutvikling ved UiA og jobber som skiftleder i restaurantbransjen.
+          Ved siden av lager jeg apper med utgangspunkt i det jeg ser på jobb, og nettsider for bedrifter her i byen.
+        </p>
+        <div class="buttons">
+          <a href="#prosjekter" class="btn btn-primary">Se prosjektene</a>
+          <a href="https://github.com/Adamah1" class="btn btn-ghost" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="prosjekter">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Prosjekter</h2>
+          <p>Noen er ferdige, andre er fortsatt under arbeid. Jeg har skrevet ærlig hvor langt hvert prosjekt har kommet.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card featured">
+            <div class="card-top">
+              <h3>Forstått</h3>
+              <span class="status s-dev">Prototype</span>
+            </div>
+            <p>
+              Et AI-verktøy som gjør HMS-instrukser og sikker jobbanalyse (SJA) om til språket arbeideren faktisk forstår.
+              Lederen limer inn instruksen, og verktøyet lager hovedpunkter og kontrollspørsmål. Arbeideren leser på sitt eget språk,
+              kan stille spørsmål og må svare riktig på en forståelsessjekk før han eller hun signerer. Alt blir dokumentert.
+            </p>
+            <p class="why">
+              Hvorfor: Byggherreforskriften krever at sikkerhetsinformasjon gis på et språk arbeideren forstår, og mange på
+              byggeplasser i Norge har et annet morsmål enn norsk. En signatur alene viser ikke at noen har forstått.
+              Som verneombud har jeg sett hvor viktig dette er.
+            </p>
+            <ul class="tags">
+              <li>AI</li><li>16 språk</li><li>Lettlest norsk</li><li>HMS</li><li>CSV-eksport</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3>Restaurant Roulette</h3>
+              <span class="status s-live">Publisert</span>
+            </div>
+            <p>
+              Klarer du ikke å bestemme deg for hvor du skal spise? Sveip gjennom restauranter, kafeer og puber,
+              eller la et lykkehjul velge for deg. Du kan filtrere på kjøkken, budsjett, allergier, avstand og åpningstider.
+            </p>
+            <ul class="tags">
+              <li>PWA</li><li>SwiftUI</li><li>OpenStreetMap</li><li>Overpass API</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3>Pulsen</h3>
+              <span class="status s-dev">Under utvikling</span>
+            </div>
+            <p>
+              Engasjementsapp for undervisning. Studentene gir anonyme signaler i sanntid, for eksempel at de ikke henger med
+              eller har et spørsmål, slik at foreleseren merker det med en gang.
+            </p>
+            <ul class="tags">
+              <li>NestJS</li><li>Prisma</li><li>SQLite</li><li>Vite</li><li>Monorepo</li>
+            </ul>
+            <a class="link" href="https://github.com/Adamah1/skole" target="_blank" rel="noopener">Se koden ↗</a>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3>FitCore</h3>
+              <span class="status s-dev">Under utvikling</span>
+            </div>
+            <p>
+              AI-drevet app for trening og kosthold, for iOS og web. Målet er en app som tilpasser seg brukeren
+              i stedet for å gi alle det samme opplegget.
+            </p>
+            <ul class="tags">
+              <li>AI</li><li>iOS</li><li>Web</li>
+            </ul>
+            <a class="link" href="https://github.com/Adamah1/fitcore" target="_blank" rel="noopener">Se koden ↗</a>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <h3>Vannpost-monitor</h3>
+              <span class="status s-plan">Planlagt</span>
+            </div>
+            <p>
+              Fjernovervåking av vannposter og pumper i Somalia, slik at det blir lettere å oppdage problemer under tørke.
+              Første versjon bruker simulerte sensordata før jeg tar i bruk ekte maskinvare.
+            </p>
+            <ul class="tags">
+              <li>ESP32</li><li>ASP.NET Core</li><li>Leaflet</li><li>IoT</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="nettsider" class="alt">
+      <div class="wrap split">
+        <div>
+          <h2>Nettsider for bedrifter i Kristiansand</h2>
+          <p style="margin-top:1.2rem">
+            Mange små bedrifter har en nettside som er utdatert, treg eller vanskelig å bruke på mobil.
+            Jeg lager enkle og raske sider som gir kundene det de leter etter, uten unødvendig pynt.
+          </p>
+          <p>
+            Jeg har jobbet flere år i restaurantbransjen, så jeg vet hva gjestene ser etter: menyen, åpningstidene
+            og hvordan de bestiller bord. Derfor starter jeg med restauranter, kafeer og andre servicebedrifter.
+          </p>
+          <div class="buttons">
+            <a href="#kontakt" class="btn btn-primary">Ta kontakt</a>
+          </div>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <div class="num">1</div>
+            <div><strong>Laget for mobilen først</strong><span>De fleste gjester finner deg på telefonen, så siden må fungere der.</span></div>
+          </div>
+          <div class="feature">
+            <div class="num">2</div>
+            <div><strong>Det viktigste øverst</strong><span>Meny, åpningstider, adresse og kontakt, lett å finne og lett å oppdatere.</span></div>
+          </div>
+          <div class="feature">
+            <div class="num">3</div>
+            <div><strong>Rask å laste</strong><span>Ingen tunge maler. En rask side er bedre for både gjestene og Google.</span></div>
+          </div>
+          <div class="feature">
+            <div class="num">4</div>
+            <div><strong>Du eier alt</strong><span>Domenet og koden er dine. Du er ikke låst til meg eller til en dyr plattform.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="om">
+      <div class="wrap about-grid">
+        <div>
+          <div class="section-head" style="margin-bottom:1.4rem"><h2>Om meg</h2></div>
+          <p>
+            Jeg studerer dataingeniør med fordypning i programvareutvikling ved Universitetet i Agder.
+            Samtidig jobber jeg som skiftleder og verneombud i restaurantbransjen, og det er der mange av idéene mine kommer fra.
+          </p>
+          <p>
+            Når jeg ser et problem på jobb, prøver jeg å finne ut om det kan løses med programvare. Forstått startet slik,
+            og det samme gjorde Restaurant Roulette. Jeg er flerspråklig, og det har lært meg hvor mye som går tapt
+            når informasjon bare finnes på ett språk.
+          </p>
+        </div>
+
+        <div class="facts">
+          <div>
+            <h4>Studier</h4>
+            <ul>
+              <li>Dataingeniør, UiA Kristiansand</li>
+              <li><small>Software Engineering (IKT202), Algoritmer og datastrukturer (IKT203), Internettjenester (IKT201)</small></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Språk og verktøy</h4>
+            <ul>
+              <li>C#, C++, TypeScript, Swift</li>
+              <li>NestJS, ASP.NET Core, React Native / Expo, SwiftUI</li>
+              <li>Git, UML (Enterprise Architect)</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Erfaring</h4>
+            <ul>
+              <li>Skiftleder i restaurantbransjen</li>
+              <li>Verneombud med 40-timers HMS-kurs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="wrap">
+        <div class="contact">
+          <h2>La oss snakke sammen</h2>
+          <p>
+            Har du en bedrift som trenger en ny nettside, eller vil du vite mer om et av prosjektene mine?
+            Ta kontakt, så hører du fra meg.
+          </p>
+          <div class="buttons">
+            <a href="https://github.com/Adamah1" class="btn btn-ghost" target="_blank" rel="noopener">GitHub: Adamah1 ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year">2026</span> Adam Hassan · Kristiansand</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
